@@ -69,6 +69,14 @@
   }
   td.bound { white-space: nowrap; }
   td.src { font-family: system-ui, sans-serif; font-size: 0.85rem; white-space: nowrap; }
+  figure { margin: 32px 0; }
+  figure img { width: 100%; height: auto; display: block; border-radius: 4px; }
+  figcaption {
+    margin-top: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
   footer {
     margin-top: 48px;
     padding-top: 24px;
@@ -134,6 +142,12 @@
   </div>
 
   <p>OpenAI, Anthropic, and Vals.ai just proved these bounds could be broken, but didn't put effort into lowering the exponent. There's probably low hanging fruit in each of those.</p>
+
+  <figure>
+    <img src="integer-multiplication-bounds.webp" width="2700" height="1800"
+      alt="Chart of the claimed integer multiplication exponent saving per submission to CrocSwap/integer-mult-bounds, October 7-8, 2026, rising from about 10^-18 to about 4.1 × 10^-5.">
+    <figcaption>Image: <a href="https://x.com/RohanArun/status/2108207365199663189">Rohan Arun</a></figcaption>
+  </figure>
 
   <p>This website will track status on the problems, make it easy for people and agents to get started, and show speedrun-style leaderboards.</p>
 
