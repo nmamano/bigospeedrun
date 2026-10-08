@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The era of Big O speedrunning?</title>
+<meta name="description" content="Speedrun-style leaderboards for classic algorithmic bounds.">
+<meta property="og:title" content="The era of Big O speedrunning?">
+<meta property="og:description" content="Speedrun-style leaderboards for classic algorithmic bounds.">
+<meta property="og:url" content="https://bigospeedrun.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left: '\\(', right: '\\)', display: false}]})"></script>
+<style>
+  :root {
+    --bg: #fdfdfc;
+    --fg: #1b1b1b;
+    --muted: #666;
+    --line: #e4e4e0;
+    --accent: #0b5cad;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212;
+      --fg: #e8e8e8;
+      --muted: #9a9a9a;
+      --line: #2c2c2c;
+      --accent: #6aa9ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 18px/1.6 Georgia, "Times New Roman", serif;
+  }
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+  h1 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin: 0 0 32px;
+  }
+  a { color: var(--accent); }
+  .table-wrap { overflow-x: auto; margin: 24px 0 32px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  th, td {
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    text-align: left;
+  }
+  th {
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  td.bound { white-space: nowrap; }
+  td.src { font-family: system-ui, sans-serif; font-size: 0.85rem; white-space: nowrap; }
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>The era of Big O speedrunning?</h1>
+
+  <p>Many long standing algorithmic boundaries just got broken:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Problem</th>
+          <th>Old bound</th>
+          <th>New bound</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>3SUM on \(n\) polynomial-bit integers</td>
+          <td class="bound">\(O(n^2)\)</td>
+          <td class="bound">\(O(n^{1.9992})\)</td>
+          <td class="src"><a href="https://arxiv.org/abs/2610.06783">Anthropic</a></td>
+        </tr>
+        <tr>
+          <td>APSP on a directed graph with \(n\) vertices and polynomially bounded integer edge weights</td>
+          <td class="bound">\(O(n^3)\)</td>
+          <td class="bound">\(O(n^{2.9995})\)</td>
+          <td class="src"><a href="https://arxiv.org/abs/2610.06783">Anthropic</a></td>
+        </tr>
+        <tr>
+          <td>Subset Sum on \(n\) integers</td>
+          <td class="bound">\(O^*(2^{0.5n})\)</td>
+          <td class="bound">\(O^*(2^{0.49n})\)</td>
+          <td class="src"><a href="https://github.com/openai/math/tree/main/preprints/Subset-Sum-in-Time-2-power-0-49n-October-4-2026">OpenAI</a></td>
+        </tr>
+        <tr>
+          <td>Multiplication of two \(n\)-bit integers</td>
+          <td class="bound">\(O(n \log n)\)</td>
+          <td class="bound">\(O\big(n \log^{1-2^{-182}} n\big)\)</td>
+          <td class="src"><a href="https://github.com/openai/math/tree/main/preprints/Integer-multiplication-below-n-log-n-September-23-2026">OpenAI</a></td>
+        </tr>
+        <tr>
+          <td>Exact discrete Fourier transform of length \(n\)</td>
+          <td class="bound">\(O(n \log n)\)</td>
+          <td class="bound">\(O\big(n \log^{1-10^{-13}} n\big)\)</td>
+          <td class="src"><a href="https://github.com/openai/math/tree/main/preprints/An-explicit-power-saving-for-the-exact-discrete-Fourier-transform-September-25-2026">OpenAI</a></td>
+        </tr>
+        <tr>
+          <td>Exact single-source shortest paths in a directed graph with nonnegative real edge weights, with \(n\) vertices and \(\Theta(n \log^{3/4} n)\) edges</td>
+          <td class="bound">\(O(n \log n)\)</td>
+          <td class="bound">\(O(n \log^{11/12} n)\)</td>
+          <td class="src"><a href="https://www.vals.ai/blogs/faster-shortest-path-algorithm">Vals.ai</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>OpenAI, Anthropic, and Vals.ai just proved these bounds could be broken, but didn't put effort into lowering the exponent. There's probably low hanging fruit in each of those.</p>
+
+  <p>This website will track status on the problems, make it easy for people and agents to get started, and show speedrun-style leaderboards.</p>
+
+  <p>Inspired by the very successful <a href="https://github.com/KellerJordan/modded-nanogpt">NanoGPT speedrun</a>, and hoping to bring similar progress and interest to our classic problems.</p>
+
+  <footer>
+    <p>Work In Progress by <a href="https://nilmamano.com">Nil Mamano</a>, PhD in theoretical CS.</p>
+    <p>Sounds interesting? Connect with Nil on <a href="https://x.com/Nil053">X</a> or <a href="https://www.linkedin.com/in/nilmamano/">LinkedIn</a>. Looking for feedback, collaborators, etc.</p>
+  </footer>
+</main>
+</body>
+</html>
